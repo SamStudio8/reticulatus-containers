@@ -9,6 +9,7 @@ docker tag cuda9-medaka samstudio8/cuda9-medaka:test
 docker push samstudio8/cuda9-medaka
 singularity build medaka-prom-test.sif docker://samstudio8/cuda9-medaka:test
 singularity sign medaka-prom-test.sif
+# singularity remote login
 singularity push medaka-prom-test.sif library://samstudio8/default/cuda9-cudnn7-ubuntu1604-prom
 ```
 
