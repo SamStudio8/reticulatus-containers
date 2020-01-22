@@ -1,20 +1,32 @@
 # grab an off the shelf container with cuda9
 FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
-
 RUN apt-get update && apt-get install -y curl wget git python3
+
+# install git lfs
+# https://askubuntu.com/questions/799341/how-to-install-git-lfs-on-ubuntu-16-04
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
+RUN apt-get update && apt-get install git-lfs
 
 RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
 RUN python3 get-pip.py
 
 RUN mkdir git
+RUN git --version
 WORKDIR git
 
-RUN git clone http://github.com/samstudio8/medaka.git
+RUN git clone http://github.com/nanoporetech/medaka.git
 WORKDIR medaka
-RUN git checkout tf112
+
+# checkout v10.1
+RUN git checkout 295b3278b195df9b8d6372bc7b0ac1c78063f461
+
+# Hack to make tensorflow 1.12 work so we can use this on GRID/PROM with CUDA9
+RUN wget https://raw.githubusercontent.com/SamStudio8/reticulatus-containers/master/medaka/tf112.patch
+RUN patch medaka/prediction.py -i tf112.patch
+RUN sed -i 's,tensorflow==1.14.0,tensorflow-gpu==1.12.0,' requirements.txt
 
 # get medaka base and py requirements
-RUN apt-get update && apt-get install -y bzip2 gcc zlib1g-dev libbz2-dev liblzma-dev libffi-dev libncurses5-dev libcurl4-gnutls-dev libssl-dev make wget python3-all-dev python-virtualenv
+RUN apt-get update && apt-get install -y bzip2 g++ zlib1g-dev libbz2-dev liblzma-dev libffi-dev libncurses5-dev libcurl4-gnutls-dev libssl-dev curl make cmake wget python3-all-dev python-virtualenv
 #RUN pip3 install -r requirements.txt
 
 # run medaka make (i dont really like that this yields a virtualenv tbh)

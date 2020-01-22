@@ -5,7 +5,7 @@ For me:
 
 ```
 docker build -f cuda9-medaka.Dockerfile -t cuda9-medaka .
-docker tag <hash> samstudio8/cuda9-medaka:test
+docker tag cuda9-medaka samstudio8/cuda9-medaka:test
 docker push samstudio8/cuda9-medaka
 singularity build medaka-prom-test.sif docker://samstudio8/cuda9-medaka:test
 singularity sign medaka-prom-test.sif
