@@ -1,0 +1,7 @@
+1c1,4
+<     tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+---
+>     try:
+>         tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+>     except AttributeError:
+>         tf.logging.set_verbosity(tf.logging.ERROR)
