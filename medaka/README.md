@@ -17,3 +17,8 @@ For you (you're welcome):
 ```
 singularity pull library://samstudio8/default/cuda9-cudnn7-ubuntu1604-prom:sha256.8ac4caaca73117601ac984ab59f431e272dba127a49319a8d9e727b973bb99db
 ```
+
+See also:
+
+https://hub.docker.com/r/samstudio8/cuda9-medaka/tags
+https://cloud.sylabs.io/library/_container/5d6e7c39cb093ee1142b8462
