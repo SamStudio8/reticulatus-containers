@@ -31,6 +31,8 @@ RUN apt-get update && apt-get install -y bzip2 g++ zlib1g-dev libbz2-dev liblzma
 
 # run medaka make (i dont really like that this yields a virtualenv tbh)
 # of course if anything goes wrong that means running this entire f'ing layer again
+# Use mini_align that permits overriding of $SORT and threaded indexing
+RUN sed -i 's,https://raw.githubusercontent.com/nanoporetech/pomoxis/master/scripts/mini_align,https://raw.githubusercontent.com/SamStudio8/pomoxis/patch-1/scripts/mini_align,' Makefile
 RUN make install
 
 ENV PATH=/git/medaka/venv/bin:$PATH
