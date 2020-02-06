@@ -17,8 +17,8 @@ WORKDIR git
 RUN git clone http://github.com/nanoporetech/medaka.git
 WORKDIR medaka
 
-# checkout v10.1
-RUN git checkout 295b3278b195df9b8d6372bc7b0ac1c78063f461
+# checkout v11.5
+RUN git checkout c9df97747038352b4806f88e5e53b514ed8f89f2
 
 # Hack to make tensorflow 1.12 work so we can use this on GRID/PROM with CUDA9
 RUN wget https://raw.githubusercontent.com/SamStudio8/reticulatus-containers/master/medaka/tf112.patch

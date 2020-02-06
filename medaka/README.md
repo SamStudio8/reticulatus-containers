@@ -16,7 +16,7 @@ singularity push medaka-prom-test.sif library://samstudio8/default/cuda9-cudnn7-
 For you (you're welcome):
 
 ```
-singularity pull library://samstudio8/default/cuda9-cudnn7-ubuntu1604-prom:sha256.32fcb26d26fde1e9019631d84bcfbce987728aea36cd0aab2a4897652d69119e
+singularity pull library://samstudio8/default/cuda9-cudnn7-ubuntu1604-prom:sha256.14a07fc2a8001ddb98e681cf49e72e408b0e343c6f886795382dd0f11ca23417
 ```
 
 See also:
